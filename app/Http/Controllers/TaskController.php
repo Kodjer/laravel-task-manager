@@ -12,7 +12,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = auth()->user()->tasks;
         return view('tasks.index', compact('tasks'));
     }
 
@@ -37,7 +37,7 @@ class TaskController extends Controller
             'due_date' => 'nullable|date',
         ]);
 
-        Task::create($validated);
+        auth()->user()->tasks()->create($validated);
 
         return redirect()->route('tasks.index')
             ->with('success', 'Задача успешно выполнена');
