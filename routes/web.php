@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     if (auth()->check()) {
-        return redirect('/task');
+        return redirect('/tasks');
     };
     return redirect('/login');
 });
@@ -23,6 +24,10 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::resource('tasks', TaskController::class);
+});
+
+Route::middleware('auth')->group(function () {
+    Route::resource('categories', CategoryController::class);
 });
 
 require __DIR__ . '/auth.php';
