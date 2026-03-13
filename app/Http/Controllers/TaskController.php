@@ -57,6 +57,7 @@ class TaskController extends Controller
             'description' => 'nullable',
             'status' => 'required|in:pending,in_progress,completed',
             'due_date' => 'nullable|date',
+            'category_id' => 'nullable|exists:categories,id',
         ]);
 
         $task->update($validated);

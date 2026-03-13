@@ -141,6 +141,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Название</th>
+                        <th>Категория</th>
                         <th>Статус</th>
                         <th>Дата выполнения</th>
                         <th>Действия</th>
@@ -151,6 +152,15 @@
                         <tr>
                             <td>{{ $task->id }}</td>
                             <td>{{ $task->title }}</td>
+                            <td>
+                                @if ($task->category)
+                                    <span style="color: {{ $task->category->color }}; font-weigt: bold;">
+                                        {{ $task->category->name }}
+                                    </span>
+                                @else
+                                    <span style="color: #999;">Без категории</span>
+                                @endif
+                            </td>
                             <td>
                                 <span class="status {{ $task->status }}">
                                     @if($task->status == 'pending') Ожидает

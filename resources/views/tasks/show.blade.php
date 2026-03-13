@@ -115,13 +115,26 @@
 
 <body>
     <div class="container">
-        <h1>👁️ Просмотр задачи #{{ $task->id }}</h1>
+        <h1>Просмотр задачи #{{ $task->id }}</h1>
 
         <div class="detail-group">
             <div class="label">Название:</div>
             <div class="value">{{ $task->title }}</div>
         </div>
-
+        <div class="detail-group">
+            <div class="label">Категория:<div>
+                    <div class="value">
+                        @if ($task->category)
+                            <span style="color: {{ $task->category->color }}; font-weight: bold;">
+                                {{ $task->category->name }}
+                            </span>
+                        @else
+                            <span style="color: #999">Без категории</span>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="detail-group">
             <div class="label">Описание:</div>
             <div class="value">
@@ -167,14 +180,14 @@
         </div>
 
         <div class="buttons">
-            <a href="{{ route('tasks.edit', $task) }}" class="btn btn-edit">✏️ Изменить</a>
+            <a href="{{ route('tasks.edit', $task) }}" class="btn btn-edit">Изменить</a>
             <form action="{{ route('tasks.destroy', $task) }}" method="POST" style="display: inline;">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-delete" onclick="return confirm('Удалить задачу?')">🗑️
-                    Удалить</button>
+                <button type="submit" class="btn btn-delete"
+                    onclick="return confirm('Удалить задачу?')">Удалить</button>
             </form>
-            <a href="{{ route('tasks.index') }}" class="btn btn-secondary">◀️ Назад к списку</a>
+            <a href="{{ route('tasks.index') }}" class="btn btn-secondary">Назад к списку</a>
         </div>
     </div>
 </body>

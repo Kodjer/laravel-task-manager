@@ -103,7 +103,7 @@
 
 <body>
     <div class="container">
-        <h1>✏️ Изменить задачу #{{ $task->id }}</h1>
+        <h1>Изменить задачу #{{ $task->id }}</h1>
 
         <form action="{{ route('tasks.update', $task) }}" method="POST">
             @csrf
@@ -113,6 +113,23 @@
                 <label for="title">Название задачи *</label>
                 <input type="text" id="title" name="title" value="{{ old('title', $task->title) }}" required>
                 @error('title')
+                    <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="category">Категория</label>
+                <select id="category_id" name="category_id">
+                    <option value="" {{ old('category_id', $task->category_id) == null ? 'selected' : '' }}>
+                        Без категории
+                    </option>
+                    @foreach (auth()->user()->categories as $category)
+                        <option value="{{ $category->id }}" {{ old('category_id', $task->category_id) == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('category_id')
                     <div class="error">{{ $message }}</div>
                 @enderror
             </div>

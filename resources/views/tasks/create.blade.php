@@ -137,6 +137,16 @@
             </div>
 
             <div class="form-group">
+                <label for="category_id">Категория</label>
+                <select id="category_id" name="category_id">
+                    <option value="">Без категории</option>
+                    @foreach(auth()->user()->categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="due_date">Дата выполнения</label>
                 <input type="date" id="due_date" name="due_date" value="{{ old('due_date') }}">
                 @error('due_date')
