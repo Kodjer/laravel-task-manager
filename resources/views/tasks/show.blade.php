@@ -145,7 +145,6 @@
                 @endif
             </div>
         </div>
-
         <div class="detail-group">
             <div class="label">Статус:</div>
             <div class="value">
@@ -157,7 +156,17 @@
                 </span>
             </div>
         </div>
-
+        <div class="detail-group">
+            <div class="label">Приоритет:</div>
+            <div class="value">
+                <span class="priority {{ $task->priority }}">
+                    @if ($task->priority == 'low') Низкий
+                    @elseif ($task->priority == 'normal') Нормальный
+                    @else Высокий
+                    @endif
+                </span>
+            </div>
+        </div>
         <div class="detail-group">
             <div class="label">Дата выполнения:</div>
             <div class="value">

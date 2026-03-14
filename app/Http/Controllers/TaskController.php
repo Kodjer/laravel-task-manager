@@ -29,6 +29,7 @@ class TaskController extends Controller
             'description' => 'nullable',
             'status' => 'required|in:pending,in_progress,completed',
             'due_date' => 'nullable|date',
+            'priority' => 'required|in:low,normal,high'
         ]);
 
         auth()->user()->tasks()->create($validated);
@@ -58,6 +59,7 @@ class TaskController extends Controller
             'status' => 'required|in:pending,in_progress,completed',
             'due_date' => 'nullable|date',
             'category_id' => 'nullable|exists:categories,id',
+            'priority' => 'required|in:low,normal,high'
         ]);
 
         $task->update($validated);

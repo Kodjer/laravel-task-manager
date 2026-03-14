@@ -135,6 +135,17 @@
             </div>
 
             <div class="form-group">
+                <label for="priority">Приоритет</label>
+                <select name="priority" id="priority">
+                    <option value="low" {{ old('priority', $task->priority) == 'low' ? 'selected' : '' }}>Низкий</option>
+                    <option value="normal" {{ old('priority', $task->priority) == 'normal' ? 'selected' : '' }}>Нормальный
+                    </option>
+                    <option value="high" {{ old('priority', $task->priority) == 'high' ? 'selected' : '' }}>Высокий
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="description">Описание</label>
                 <textarea id="description" name="description">{{ old('description', $task->description) }}</textarea>
                 @error('description')
@@ -167,8 +178,8 @@
             </div>
 
             <div class="buttons">
-                <button type="submit" class="btn btn-primary">💾 Сохранить изменения</button>
-                <a href="{{ route('tasks.index') }}" class="btn btn-secondary">❌ Отмена</a>
+                <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                <a href="{{ route('tasks.index') }}" class="btn btn-secondary">Отмена</a>
             </div>
         </form>
     </div>

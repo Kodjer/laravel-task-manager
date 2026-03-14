@@ -143,6 +143,7 @@
                         <th>Название</th>
                         <th>Категория</th>
                         <th>Статус</th>
+                        <th>Приоритет</th>
                         <th>Дата выполнения</th>
                         <th>Действия</th>
                     </tr>
@@ -170,6 +171,15 @@
                                 </span>
                             </td>
                             <td>
+                                @if ($task->priority == 'high')
+                                    <span style="color: #dc3545; font-weight: bold;">Высокий</span>
+                                @elseif ($task->priority == 'normal')
+                                    <span style="color: #ffc107; font-weight: bold;">Нормальный</span>
+                                @else
+                                    <span style="color: #28a745; font-weight: bold;">Низкий</span>
+                                @endif
+                            </td>
+                            <td>
                                 @if($task->due_date)
                                     {{ $task->due_date->format('d.m.Y') }}
                                 @else
@@ -194,7 +204,7 @@
             </table>
         @else
             <p style="text-align: center; color: #666; padding: 40px;">
-                У вас пока нет задач. Создайте первую! 🎯
+                У вас пока нет задач. Создайте первую!
             </p>
         @endif
     </div>

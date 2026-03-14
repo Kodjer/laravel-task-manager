@@ -147,6 +147,15 @@
             </div>
 
             <div class="form-group">
+                <label for="priority">Приоритет</label>
+                <select name="priority" id="priority">
+                    <option value="low" {{ old('priority') == 'low' ? 'selected' : '' }}>Низкий</option>
+                    <option value="normal" {{ old('priority') == 'normal' ? 'selected' : '' }}>Нормальный</option>
+                    <option value="high" {{ old('priority') == 'high' ? 'selected' : '' }}>Высокий</option>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="due_date">Дата выполнения</label>
                 <input type="date" id="due_date" name="due_date" value="{{ old('due_date') }}">
                 @error('due_date')
@@ -155,8 +164,8 @@
             </div>
 
             <div class="buttons">
-                <button type="submit" class="btn btn-primary">💾 Сохранить</button>
-                <a href="{{ route('tasks.index') }}" class="btn btn-secondary">❌ Отмена</a>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <a href="{{ route('tasks.index') }}" class="btn btn-secondary">Отмена</a>
             </div>
         </form>
     </div>
