@@ -177,15 +177,40 @@
                 @endif
             </div>
         </div>
-
         <div class="detail-group">
             <div class="label">Создана:</div>
             <div class="value">{{ $task->created_at->format('d.m.Y H:i') }}</div>
         </div>
-
         <div class="detail-group">
             <div class="label">Обновлена:</div>
             <div class="value">{{ $task->updated_at->format('d.m.Y H:i') }}</div>
+        </div>
+
+        <div class="subtasks-section">
+            <h3>Подзадачи</h3>
+            <form action="{{ route('subtasks.store', $task) }}" method="post">
+                @csrf
+                <input type="text" name="title" placeholder="Новая подзадача">
+                <button>Добавить</button>
+            </form>
+            @foreach ($task->subtasks as $subtask)
+                <div>
+                    <form action="{{ route('subtasks.toggle', $subtask) }}" method="POST">
+                        @csrf
+                        @method ('PATCH')
+                        <input type="checkbox" {{ $subtask->is_completed ? 'checked' : '' }} onchange="this.form.submit()">
+                    </form>
+                    <span
+                        style="{{ $subtask->is_completed ? 'text-decoration: line-through; color: gray;' : '' }}">{{ $subtask->title }}</span>
+                    <form action="{{ route('subtasks.destroy', $subtask) }}" method="POST" style="display: inline;">
+                        @csrf
+                        @method ('DELETE')
+                        <button type="submit" onclick="return confirm('Удалить подзадачу?')">Удалить
+
+                        </button>
+                    </form>
+                </div>
+            @endforeach
         </div>
 
         <div class="buttons">

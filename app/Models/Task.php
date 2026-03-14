@@ -32,4 +32,9 @@ class Task extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function subtasks()
+    {
+        return $this->hasMany(Subtask::class)->orderBy('order');
+    }
 }
