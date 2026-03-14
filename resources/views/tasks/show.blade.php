@@ -188,6 +188,20 @@
 
         <div class="subtasks-section">
             <h3>Подзадачи</h3>
+            @php
+                $total = $task->subtasks->count();
+                $completed = $task->subtasks->where('is_completed', true)->count();
+                $percentage = $total > 0 ? ($completed / $total) * 100 : 0; 
+            @endphp
+            <div>
+                <p>{{ $completed }} из {{ $total }} выполнено ({{ $percentage . "%"}})</p>
+            </div>
+            <div style="background-color: #e0e0e0;height: 20px;border-radius: 10px;overflow: hidden;margin: 15px 0" ;>
+                <div style="background-color: #28a745;width: {{ $percentage }}%;height: 100%;">
+
+                </div>
+            </div>
+
             <form action="{{ route('subtasks.store', $task) }}" method="post">
                 @csrf
                 <input type="text" name="title" placeholder="Новая подзадача">
@@ -208,6 +222,8 @@
                         <button type="submit" onclick="return confirm('Удалить подзадачу?')">Удалить
 
                         </button>
+
+
                     </form>
                 </div>
             @endforeach

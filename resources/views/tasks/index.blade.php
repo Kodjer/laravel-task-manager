@@ -125,13 +125,13 @@
 
 <body>
     <div class="container">
-        <h1>📋 Мои задачи</h1>
+        <h1>Мои задачи</h1>
 
-        <a href="{{ route('tasks.create') }}" class="btn">➕ Создать новую задачу</a>
+        <a href="{{ route('tasks.create') }}" class="btn">Создать новую задачу</a>
 
         @if(session('success'))
             <div class="success">
-                ✅ {{ session('success') }}
+                {{ session('success') }}
             </div>
         @endif
 
