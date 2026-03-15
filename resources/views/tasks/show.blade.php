@@ -191,7 +191,7 @@
             @php
                 $total = $task->subtasks->count();
                 $completed = $task->subtasks->where('is_completed', true)->count();
-                $percentage = $total > 0 ? ($completed / $total) * 100 : 0; 
+                $percentage = $total > 0 ? round(($completed / $total) * 100) : 0; 
             @endphp
             <div>
                 <p>{{ $completed }} из {{ $total }} выполнено ({{ $percentage . "%"}})</p>

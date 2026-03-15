@@ -104,13 +104,13 @@
 
 <body>
     <div class="container">
-        <h1>➕ Создать категорию</h1>
+        <h1>Создать категорию</h1>
 
         <form action="{{ route('categories.store') }}" method="POST">
             @csrf
 
             <div class="form-group">
-                <label for="name">Название категории *</label>
+                <label for="name">Название категории</label>
                 <input type="text" id="name" name="name" value="{{ old('name') }}" required>
                 @error('name')
                     <div class="error">{{ $message }}</div>

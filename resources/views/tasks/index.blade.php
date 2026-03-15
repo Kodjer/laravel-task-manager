@@ -128,6 +128,8 @@
         <h1>Мои задачи</h1>
 
         <a href="{{ route('tasks.create') }}" class="btn">Создать новую задачу</a>
+        <a href="{{ route('categories.create') }}" class="btn">Создать категорию</a>
+        <a href="{{ route('dashboard') }}" class="btn">Статистика</a>
 
         @if(session('success'))
             <div class="success">

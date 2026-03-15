@@ -103,13 +103,13 @@
 
 <body>
     <div class="container">
-        <h1>➕ Создать новую задачу</h1>
+        <h1>Создать новую задачу</h1>
 
         <form action="{{ route('tasks.store') }}" method="POST">
             @csrf
 
             <div class="form-group">
-                <label for="title">Название задачи *</label>
+                <label for="title">Название задачи</label>
                 <input type="text" id="title" name="title" value="{{ old('title') }}" required>
                 @error('title')
                     <div class="error">{{ $message }}</div>
@@ -125,7 +125,7 @@
             </div>
 
             <div class="form-group">
-                <label for="status">Статус *</label>
+                <label for="status">Статус</label>
                 <select id="status" name="status" required>
                     <option value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>Ожидает</option>
                     <option value="in_progress" {{ old('status') == 'in_progress' ? 'selected' : '' }}>В работе</option>
@@ -150,8 +150,10 @@
                 <label for="priority">Приоритет</label>
                 <select name="priority" id="priority">
                     <option value="low" {{ old('priority') == 'low' ? 'selected' : '' }}>Низкий</option>
-                    <option value="normal" {{ old('priority') == 'normal' ? 'selected' : '' }}>Нормальный</option>
-                    <option value="high" {{ old('priority') == 'high' ? 'selected' : '' }}>Высокий</option>
+                    <option value="normal" {{ old('priority', 'normal') == 'normal' ? 'selected' : '' }}>Нормальный
+                    </option>
+                    <option value="high" {{ old('priority') == 'high' ? 'selected' : '' }}>Высокий
+                    </option>
                 </select>
             </div>
 
