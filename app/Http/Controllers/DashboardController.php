@@ -19,7 +19,7 @@ class DashboardController extends Controller
             ->where('status', '!=', 'completed')
             ->count();
         $threeDaysLater = $today->addDays(3);
-        $upcomingTasks = $tasks->whereBetween('due_date', [$today, $threeDaysLater])
+        $upcomingTasks = $tasks->whereBetween('due_date', [now(), $threeDaysLater])
             ->where('status', '!=', 'completed')
             ->count();
 
